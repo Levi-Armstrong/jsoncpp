@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>libjsoncpp-dev</name>
+  <version>1.9.2</version>
+  <description>Install rars thirdparty libraries</description>
+  <maintainer email="Levi.Armstrong@swri.org">Levi Armstrong</maintainer>
+  <license>Apache 2.0</license>
+  <author>Levi Armstrong</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+</package>

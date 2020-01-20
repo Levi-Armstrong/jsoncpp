@@ -45,8 +45,8 @@ Value const& Value::nullSingleton()
 
 // for backwards compatibility, we'll leave these global references around, but DO NOT
 // use them in JSONCPP library code any more!
-Value const& Value::null = Value::nullSingleton();
-Value const& Value::nullRef = Value::nullSingleton();
+//Value const& Value::null = Value::nullSingleton();
+//Value const& Value::nullRef = Value::nullSingleton();
 
 const Int Value::minInt = Int(~(UInt(-1) / 2));
 const Int Value::maxInt = Int(UInt(-1) / 2);

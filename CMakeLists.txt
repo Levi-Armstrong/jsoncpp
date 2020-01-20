@@ -4,13 +4,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8.5)
 PROJECT(jsoncpp)
 ENABLE_TESTING()
 
-OPTION(JSONCPP_WITH_TESTS "Compile and (for jsoncpp_check) run JsonCpp test executables" ON)
+OPTION(JSONCPP_WITH_TESTS "Compile and (for jsoncpp_check) run JsonCpp test executables" OFF)
 OPTION(JSONCPP_WITH_POST_BUILD_UNITTEST "Automatically run unit-tests as a post build step" ON)
 OPTION(JSONCPP_WITH_WARNING_AS_ERROR "Force compilation to fail if a warning occurs" OFF)
 OPTION(JSONCPP_WITH_STRICT_ISO "Issue all the warnings demanded by strict ISO C and ISO C++" ON)
 OPTION(JSONCPP_WITH_PKGCONFIG_SUPPORT "Generate and install .pc files" ON)
-OPTION(JSONCPP_WITH_CMAKE_PACKAGE "Generate and install cmake package files" OFF)
-OPTION(BUILD_SHARED_LIBS "Build jsoncpp_lib as a shared library." OFF)
+OPTION(JSONCPP_WITH_CMAKE_PACKAGE "Generate and install cmake package files" ON)
+OPTION(BUILD_SHARED_LIBS "Build jsoncpp_lib as a shared library." ON)
 OPTION(BUILD_STATIC_LIBS "Build jsoncpp_lib static library." ON)
 
 # Ensures that CMAKE_BUILD_TYPE is visible in cmake-gui on Unix
@@ -114,7 +114,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=conversion -pedantic")
   endif ()
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-  # using Intel compiler
+  # using Intel compiler
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wconversion -Wshadow -Wextra -Werror=conversion")
 
   if (JSONCPP_WITH_STRICT_ISO AND NOT JSONCPP_WITH_WARNING_AS_ERROR)
@@ -145,6 +145,9 @@ IF(JSONCPP_WITH_CMAKE_PACKAGE)
         INSTALL(EXPORT jsoncpp
                 DESTINATION ${PACKAGE_INSTALL_DIR}/jsoncpp
                 FILE        jsoncppConfig.cmake)
+
+        export(EXPORT jsoncpp
+               FILE ${CMAKE_CURRENT_BINARY_DIR}/jsoncppConfig.cmake)
 ENDIF()
 
 # Build the different applications
